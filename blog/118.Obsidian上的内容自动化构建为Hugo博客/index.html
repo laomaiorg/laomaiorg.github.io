@@ -1,0 +1,423 @@
+<!DOCTYPE html><html lang="en" class="break-words antialiased" data-astro-transition-scope="astro-tyfwoq7n-1"> <head><!-- High Priority Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Obsidian上的内容自动化构建为Hugo博客 | 老麦笔记</title><meta name="generator" content="Astro v4.5.2"><!-- Low Priority Global Metadata --><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" href="/feed.xml" title="RSS"><!-- Page Metadata --><link rel="canonical" href="https://www.iamlm.com/blog/118.Obsidian%E4%B8%8A%E7%9A%84%E5%86%85%E5%AE%B9%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E4%B8%BAHugo%E5%8D%9A%E5%AE%A2/"><meta name="description" content=""><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:url" content="https://www.iamlm.com/blog/118.Obsidian%E4%B8%8A%E7%9A%84%E5%86%85%E5%AE%B9%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E4%B8%BAHugo%E5%8D%9A%E5%AE%A2/"><meta property="og:title" content="Obsidian上的内容自动化构建为Hugo博客 | 老麦笔记"><meta property="og:description" content=""><meta property="og:image" content="https://www.iamlm.com/images/laomai.jpg"><meta property="og:image:alt" content="老麦笔记 - 平淡、简单，时而折腾，时而游戏，时而静静。"><!-- X/Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://www.iamlm.com/blog/118.Obsidian%E4%B8%8A%E7%9A%84%E5%86%85%E5%AE%B9%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E4%B8%BAHugo%E5%8D%9A%E5%AE%A2/"><meta property="twitter:title" content="Obsidian上的内容自动化构建为Hugo博客 | 老麦笔记"><meta property="twitter:description" content=""><meta property="twitter:image" content="https://www.iamlm.com/images/laomai.jpg"><meta name="twitter:image:alt" content="老麦笔记 - 平淡、简单，时而折腾，时而游戏，时而静静。"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/_slug_.BhN3AoNt.css" /><script type="module" src="/_astro/hoisted.D244R46j.js"></script><style>[data-astro-transition-scope="astro-tyfwoq7n-1"] { view-transition-name: astro-tyfwoq7n-1; }@layer astro { ::view-transition-old(astro-tyfwoq7n-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(astro-tyfwoq7n-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(astro-tyfwoq7n-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(astro-tyfwoq7n-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-tyfwoq7n-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-tyfwoq7n-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-tyfwoq7n-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-tyfwoq7n-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-tyfwoq7n-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-tyfwoq7n-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-tyfwoq7n-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-tyfwoq7n-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="bg-main text-main"> <div class="flex min-h-screen flex-col px-4 py-4"> <div class="w-12 h-12 xl:fixed"> <a href="/" title="老麦笔记" aria-label="Back To Home Page"> <svg viewBox="0 0 512 512" width="48" height="48" xmlns="http://www.w3.org/2000/svg"> <path class="opacity-40 duration-1000 hover:fill-stone-900 hover:opacity-100 dark:fill-white dark:hover:fill-stone-100" d="M71.5 142.3c.6-5.9-1.7-11.8-6.1-15.8L20.3 72.1V64h140.2l108.4 237.7L364.2 64h133.7v8.1l-38.6 37c-3.3 2.5-5 6.7-4.3 10.8v272c-.7 4.1 1 8.3 4.3 10.8l37.7 37v8.1H307.3v-8.1l39.1-37.9c3.8-3.8 3.8-5 3.8-10.8V171.2L241.5 447.1h-14.7L100.4 171.2v184.9c-1.1 7.8 1.5 15.6 7 21.2l50.8 61.6v8.1h-144v-8L65 377.3c5.4-5.6 7.9-13.5 6.5-21.2V142.3z"></path> </svg> </a> </div> <!-- <Nav /> --> <div class="absolute top-4 right-4 z-10 md:fixed"> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="Z22rRWJ" component-url="/_astro/ThemeToggle.BA4F87Rh.js" component-export="default" renderer-url="/_astro/client.DKLxeLh-.js" props="{}" ssr="" client="only" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:&quot;vue&quot;}"></astro-island> </div>  <!-- {showHeader && <Header />} --> <main class="mx-auto w-full max-w-3xl grow">  <article class="mb-16 mt-8 sm:mb-24 xl:mt-20"> <header class="mb-8"> <h1 class="text-3xl font-bold leading-tight sm:text-5xl sm:leading-tight">Obsidian上的内容自动化构建为Hugo博客</h1> <div class="mt-4 text-sm"> <time datetime="2023-02-12T00:00:00.000Z"> February 12, 2023 </time>  </div> </header> <div class="prose prose-dante max-w-none prose-a:underline-offset-4"> <h2 id="说明">说明</h2>
+<p>篇幅长且啰嗦，内容只是我的 Hugo 博客文章是如何实现“自动化”构建的一份记录。</p>
+<p>首先，以下内容仅且只是我个人按自己的需求一步步实现的所谓“自动化”，其中很多步骤用处不大，只是我个人有自己的小需求才特意加上去，所以以下内容仅供参考，实现方法其实挺笨的，但胜在能满足我个人需求了。</p>
+<p>再次，本篇内容默认运行在一般的开发环境已经搭建完成的电脑上，环境搭建可参考：</p>
+<p><a href="https://laomai.org/archives/macos-env-setup-record-sharing/">https://laomai.org/archives/macos-env-setup-record-sharing/</a></p>
+<h2 id="hugo">Hugo</h2>
+<p>一款基于 Go 语言的静态网站生成工具，我是从 20 年 8 月中旬开始接触 Hugo 的，一直以来都有在使用，哪怕是期间换成了 Wordpress，我依然觉得静态的个人博客才是我所需要的且是我博客的最终形态。所以在我云服务器将要过期的时候，我又一次将博客的程序换回了 Hugo，并且直接托管在 Github Pages 上，虽然国内访问的速度会很慢，但架不住它不用钱啊，免费还是很香的。</p>
+<p>官网地址：</p>
+<p><a href="https://gohugo.io">https://gohugo.io</a></p>
+<p>安装 extended 这个版本，在 Github 上直接下载并解压，将解压后的 hugo 目录移动到<code>/usr/local/</code>目录下，然后配置一下变量即可。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D"># 编辑配置文件</span></span>
+<span class="line"><span style="color:#B392F0">vim</span><span style="color:#9ECBFF"> ~/.zshrc</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 在适当的位置添加</span></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#E1E4E8"> PATH</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"/usr/local/hugo:</span><span style="color:#E1E4E8">$PATH</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 保存退出后重新加载配置文件</span></span>
+<span class="line"><span style="color:#79B8FF">source</span><span style="color:#9ECBFF"> ~/.zshrc</span></span>
+<span class="line"></span></code></pre>
+<p>Hugo 的版本更新迭代速度挺快的，当时为了使用带扩展的版本，就用了上面的方法去安装，在 Hugo 的频繁更新下，这种安装方法更新起来还是很麻烦的。前段时间在大峰那看到他用 Homebrew 来安装，我就去 Homebrew 的官网那里搜了下文档，这时才发现原来 Homebrew 安装的 Hugo 默认就是带扩展的版本，特意在虚拟机上验证了一下，的确是带扩展的版本，<strong>因此建议直接使用 Homebrew 安装 Hugo</strong>。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#B392F0">laomai@debian:~$</span><span style="color:#9ECBFF"> brew</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> hugo</span></span>
+<span class="line"><span style="color:#B392F0">Running</span><span style="color:#9ECBFF"> `</span><span style="color:#B392F0">brew</span><span style="color:#9ECBFF"> update </span><span style="color:#79B8FF">--auto-update</span><span style="color:#9ECBFF">`</span><span style="color:#79B8FF">...</span></span>
+<span class="line"><span style="color:#E1E4E8">==> </span><span style="color:#9ECBFF">Fetching</span><span style="color:#9ECBFF"> dependencies</span><span style="color:#9ECBFF"> for</span><span style="color:#9ECBFF"> hugo:</span><span style="color:#9ECBFF"> linux-headers@5.15,</span><span style="color:#9ECBFF"> glibc,</span><span style="color:#9ECBFF"> gmp,</span><span style="color:#9ECBFF"> isl,</span><span style="color:#9ECBFF"> mpfr,</span><span style="color:#9ECBFF"> libmpc,</span><span style="color:#9ECBFF"> lz4,</span><span style="color:#9ECBFF"> xz,</span><span style="color:#9ECBFF"> zlib,</span><span style="color:#9ECBFF"> zstd,</span><span style="color:#9ECBFF"> binutils</span><span style="color:#9ECBFF"> and</span><span style="color:#9ECBFF"> gcc</span></span>
+<span class="line"><span style="color:#E1E4E8">==> </span><span style="color:#9ECBFF">Fetching</span><span style="color:#9ECBFF"> linux-headers@5.15</span></span>
+<span class="line"><span style="color:#E1E4E8">==> </span><span style="color:#9ECBFF">Downloading</span><span style="color:#9ECBFF"> https://mirrors.ustc.edu.cn/homebrew-bottles/linux-headers%405.15-5.15.92.x86_64_linux.bottle.tar.gz</span></span>
+<span class="line"><span style="color:#B392F0">Already</span><span style="color:#9ECBFF"> downloaded:</span><span style="color:#9ECBFF"> /home/laomai/.cache/Homebrew/downloads/51f6a08c797a657e5131eadef86eb085539a51dd111daf28744c8743cdd4251a--linux-headers@5.15-5.15.92.x86_64_linux.bottle.tar.gz</span></span>
+<span class="line"><span style="color:#B392F0">……</span></span>
+<span class="line"><span style="color:#B392F0">🍺</span><span style="color:#9ECBFF">  /home/linuxbrew/.linuxbrew/Homebrew/Cellar/hugo/0.110.0:</span><span style="color:#79B8FF"> 48</span><span style="color:#9ECBFF"> files,</span><span style="color:#79B8FF"> 53.4</span><span style="color:#9ECBFF">MB</span></span>
+<span class="line"><span style="color:#E1E4E8">==> </span><span style="color:#9ECBFF">Running</span><span style="color:#9ECBFF"> `</span><span style="color:#B392F0">brew</span><span style="color:#9ECBFF"> cleanup hugo`</span><span style="color:#79B8FF">...</span></span>
+<span class="line"><span style="color:#B392F0">Disable</span><span style="color:#9ECBFF"> this</span><span style="color:#9ECBFF"> behaviour</span><span style="color:#9ECBFF"> by</span><span style="color:#9ECBFF"> setting</span><span style="color:#9ECBFF"> HOMEBREW_NO_INSTALL_CLEANUP.</span></span>
+<span class="line"><span style="color:#B392F0">Hide</span><span style="color:#9ECBFF"> these</span><span style="color:#9ECBFF"> hints</span><span style="color:#9ECBFF"> with</span><span style="color:#9ECBFF"> HOMEBREW_NO_ENV_HINTS</span><span style="color:#E1E4E8"> (see </span><span style="color:#9ECBFF">`</span><span style="color:#B392F0">man</span><span style="color:#9ECBFF"> brew`</span><span style="color:#E1E4E8">).</span></span>
+<span class="line"><span style="color:#E1E4E8">==> </span><span style="color:#9ECBFF">Caveats</span></span>
+<span class="line"><span style="color:#E1E4E8">==> </span><span style="color:#9ECBFF">hugo</span></span>
+<span class="line"><span style="color:#B392F0">Bash</span><span style="color:#9ECBFF"> completion</span><span style="color:#9ECBFF"> has</span><span style="color:#9ECBFF"> been</span><span style="color:#9ECBFF"> installed</span><span style="color:#9ECBFF"> to:</span></span>
+<span class="line"><span style="color:#B392F0">  /home/linuxbrew/.linuxbrew/Homebrew/etc/bash_completion.d</span></span>
+<span class="line"><span style="color:#B392F0">laomai@debian:~$</span><span style="color:#9ECBFF"> hugo</span><span style="color:#9ECBFF"> version</span></span>
+<span class="line"><span style="color:#B392F0">hugo</span><span style="color:#9ECBFF"> v0.110.0+extended</span><span style="color:#9ECBFF"> linux/amd64</span><span style="color:#9ECBFF"> BuildDate=unknown</span></span>
+<span class="line"></span></code></pre>
+<p><a href="https://github.com/Homebrew/homebrew-core/blob/master/Formula/hugo.rb#L22">https://github.com/Homebrew/homebrew-core/blob/master/Formula/hugo.rb#L22</a></p>
+<h2 id="obsidian">Obsidian</h2>
+<p>我关注这个软件是在博客圈讨论笔记软件那会，我在对比试用过 Obsidian 和 Logseq 后选择了前者，Logseq 也十分的优秀，但是后者更适合我。其实我个人是更喜欢 Typora 的，但无奈它收费了。喜欢 Typora 是因为它简单易用，Obsidian 的强大是要花时间去学习、摸索后才能使之发挥起来，对于我来说，这不够直接，扣分。</p>
+<p>Obsidian 新建仓库时建议直接在 iCloud 上新建，这样就可以简单地实现远程备份与同步的功能了。如果你也是用 Obsidian 来管理更新 Hugo 上的文章内容，那么装以下两个插件可以更加便捷的帮助我们整理内容。</p>
+<h3 id="templater">Templater</h3>
+<p>第三方插件，用来管理模板。功能很强大，但我只用了一个功能，就是在特定的文件夹里新建文件时自动套用指定的模板。</p>
+<p>一、先在 Obsidian 仓库根目录新建一个目录用来存放模板文件——<code>文章模板.md</code>；</p>
+<p><img  src="/_astro/163e7058950176-1.RIB9Bx2w_Z1yq4eJ.webp" alt="截屏2023-02-11 10.47.46" width="1992" height="1052" loading="lazy" decoding="async"></p>
+<p>我使用了 Templater 上的时间函数，这样新建文档时就会在 date 这一栏自动添加当前时间。同理，在 title 这一栏里可以使用<code>91. 「毛毛」生日快乐</code>这个函数实现自动将文档的文件名输入进来。我的文章是以文件夹的形式保存的（文件夹名字就是文章的 title），因此 title 这一栏我并不适用，折中的办法是改用<code>post</code>这个函数，但是这并不完美，会将 post 也输入进来。</p>
+<p>二、开启插件的文件夹模板功能；</p>
+<p><img  src="/_astro/163e700d465ade-1.BCx9sAVh_1IdWOf.webp" alt="截屏2023-02-11 10.43.01" width="1560" height="588" loading="lazy" decoding="async"></p>
+<h3 id="image-auto-upload-plugin">Image auto upload Plugin</h3>
+<p>第三方插件，配合 PicGo 来食用。以前我是将文档里的图片存放在文档所在目录里的，这样子的确很好整理与迁移。但一旦时间久了，图片多了，整个 post 文件夹就会变得十分臃肿，再三思考，决定还是用回图床的模式。</p>
+<p>Obsidian 上强大的插件还有很多，但是与此内容不符，因此就不再深入探究了。</p>
+<h2 id="自动化构建">自动化构建</h2>
+<p><img  src="/_astro/163e729bb5b3ba-1.BBSSVjh-_Zftrga.webp" alt="自动化流程" width="961" height="481" loading="lazy" decoding="async"></p>
+<p>上图是我根据自己的实际情况做的一个过程图，所谓的“自动化”其实就是利用 Crontab 与 Git 来实现每隔一段时间就自动进行提交内容到 Github 上。其中我先将文章内容与代码都先提交到 Gitee 后又重新拉取文档文件回 Nas 里是因为方便区分与多重备份，可根据自己的实际情况将这些步骤去掉，直接从 iCloud 里复制文档内容到 Temp 里进行构建。</p>
+<p>我的自动化构建过程大概就是：</p>
+<p>一、在<code>$HOME</code>目录下创建<code>.crontab-sh</code>目录，同时在目录里新建一个脚本文件；</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D"># 在$HOME目录下创建隐藏文件夹.crontab-sh</span></span>
+<span class="line"><span style="color:#B392F0">mkdir</span><span style="color:#9ECBFF"> ~/.crontab-sh</span></span>
+<span class="line"><span style="color:#6A737D"># 创建脚本文件</span></span>
+<span class="line"><span style="color:#B392F0">touch</span><span style="color:#9ECBFF"> ~/.crontab-sh/autoPush.sh</span></span>
+<span class="line"></span></code></pre>
+<p>二、安装好 Obsidian 后创建仓库时文档保存的路径选择保存在 iCloud 里，Windows 直接保存在本地即可；</p>
+<p>三、将 Hugo 上保存文章的文件夹复制到上面新建的仓库里，比如我的是 post 和 diary 这两个文件夹；</p>
+<p>四、在 Obsidian 仓库里创建 Git 并添加远程仓库 Gitee；</p>
+<p>Obsidian 仓库详细路径可以在菜单栏 File ☞ Open Vault… 上查看，值得注意的是，因为 iCloud 目录默认保存在<code>/Users/laomai/Library/Mobile Documents/</code>目录下，Mobile 后面有个空格，所以使用 cd 命令时需在空格前加一个反斜杠<code>\</code>。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D"># 进入Obsidian仓库目录</span></span>
+<span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> /Users/laomai/Library/Mobile</span><span style="color:#79B8FF">\ </span><span style="color:#9ECBFF">Documents/com~apple~CloudDocs/laomai.org</span></span>
+<span class="line"><span style="color:#6A737D"># 创建Git</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> init</span></span>
+<span class="line"><span style="color:#6A737D"># 添加远程仓库</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> remote</span><span style="color:#9ECBFF"> add</span><span style="color:#9ECBFF"> gitee</span><span style="color:#9ECBFF"> git@gitee.com:laomai/laomai.org.git</span></span>
+<span class="line"></span></code></pre>
+<p>五、编辑步骤一创建的脚本文件；</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D"># 编辑脚本文件</span></span>
+<span class="line"><span style="color:#B392F0">vim</span><span style="color:#9ECBFF"> ~/.crontab-sh/autoPush.sh</span></span>
+<span class="line"></span></code></pre>
+<p>将以下内容复制到脚本文件里：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D">#!/bin/bash</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">echo</span><span style="color:#79B8FF"> -e</span><span style="color:#9ECBFF"> "\033[0;32mDeploying updates to laomai...\033[0m"</span></span>
+<span class="line"><span style="color:#E1E4E8">msg</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"Push at `</span><span style="color:#E1E4E8">TZ</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">UTC-8 </span><span style="color:#B392F0">date</span><span style="color:#9ECBFF"> +%Y-%m-%d" "%H:%M:%S`"</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> [ </span><span style="color:#79B8FF">$#</span><span style="color:#F97583"> -eq</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8"> ]</span></span>
+<span class="line"><span style="color:#F97583">then</span><span style="color:#E1E4E8"> msg</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">$1</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"><span style="color:#F97583">fi</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 该目录为Obsidian仓库目录</span></span>
+<span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> /Users/laomai/Library/Mobile</span><span style="color:#79B8FF">\ </span><span style="color:#9ECBFF">Documents/com~apple~CloudDocs/laomai.org</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> add</span><span style="color:#9ECBFF"> .</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> commit</span><span style="color:#79B8FF"> -m</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$msg</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> push</span><span style="color:#79B8FF"> -u</span><span style="color:#9ECBFF"> gitee</span><span style="color:#9ECBFF"> main</span></span>
+<span class="line"></span></code></pre>
+<p>六、从 Gitee 里拉取 Obsidian 的文档文件备份到 Nas 上；</p>
+<p>因为我担心在终端上折腾群晖系统会影响到它的稳定性，所以我在群晖上跑了个虚拟机专门用来折腾，这时就会涉及到文件共享。就我个人而言，我家里一直有两个虚拟机长期运行着的，一个跑在 Nas 上，一个跑在软路由上，跑在软路由上的虚拟机我平时很少动，它主要负责跑一些线上的小程序，只求稳定。跑在 Nas 上的虚拟机则是用来测试的，符合我要求的线上程序我就会搬到软路由上的虚拟机上跑。按理说 Nas 上的虚拟机完全可以跑在电脑上的，但是因为架构的原因，无奈之下在 Nas 上也跑了个虚拟机。加上电脑上有时也会跑两个 ARM 架构的虚拟机，所以这么多虚拟机之间的文件共享就成了问题。我现在使用的方案是，资料集中存储到群晖上，然后虚拟机上安装 NFS 进行调用。至于 MacOS 直接使用 AFP 服务，体验更佳。</p>
+<p>群晖上开启相应的服务：控制面板 ☞ 文件服务 ☞AFP/NFS☞ 勾选启用；</p>
+<p>NFS 客户端安装：</p>
+<p>以 Debian11 为例，root 用户。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D"># 安装nfs-common 系统一般自带</span></span>
+<span class="line"><span style="color:#B392F0">apt</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> nfs-common</span></span>
+<span class="line"><span style="color:#6A737D"># 测试挂载远程目录到/home/nas</span></span>
+<span class="line"><span style="color:#6A737D"># IP为群晖的内网IP</span></span>
+<span class="line"><span style="color:#6A737D"># volume1为群晖的存储池 存储池可以是多个 volume2，volume3，……</span></span>
+<span class="line"><span style="color:#6A737D"># laomai为存储池1上的共享文件夹</span></span>
+<span class="line"><span style="color:#B392F0">mount</span><span style="color:#79B8FF"> -t</span><span style="color:#9ECBFF"> nfs</span><span style="color:#79B8FF"> 192.168</span><span style="color:#9ECBFF">.1.100:/volume1/laomai</span><span style="color:#9ECBFF"> /home/nas</span></span>
+<span class="line"><span style="color:#6A737D">#查看</span></span>
+<span class="line"><span style="color:#B392F0">df</span></span>
+<span class="line"><span style="color:#6A737D"># 取消挂载</span></span>
+<span class="line"><span style="color:#B392F0">umount</span><span style="color:#79B8FF"> -l</span><span style="color:#9ECBFF"> /home/nas</span></span>
+<span class="line"><span style="color:#6A737D"># 安装autofs</span></span>
+<span class="line"><span style="color:#B392F0">apt</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> autofs</span></span>
+<span class="line"><span style="color:#6A737D"># 配置autofs主体文件</span></span>
+<span class="line"><span style="color:#B392F0">vim</span><span style="color:#9ECBFF"> /etc/auto.master</span></span>
+<span class="line"><span style="color:#6A737D">#/misc	/etc/auto.misc</span></span>
+<span class="line"><span style="color:#B392F0">/home/nas</span><span style="color:#9ECBFF">  /etc/auto.nas</span></span>
+<span class="line"><span style="color:#6A737D"># 配置auto.nas</span></span>
+<span class="line"><span style="color:#B392F0">vim</span><span style="color:#9ECBFF"> /etc/auto.nas</span></span>
+<span class="line"><span style="color:#6A737D"># 这里有点难懂，我的理解是当我们在/home/nas这个目录时，只要我们cd laomai</span></span>
+<span class="line"><span style="color:#6A737D"># 进入/home/nas/laomai这个目录时就会触发autofs，从而自动挂载到远程目录上</span></span>
+<span class="line"><span style="color:#B392F0">laomai</span><span style="color:#79B8FF">	-rw</span><span style="color:#79B8FF">	192.168</span><span style="color:#9ECBFF">.1.100:/volume1/laomai</span></span>
+<span class="line"><span style="color:#6A737D"># 重启autofs服务</span></span>
+<span class="line"><span style="color:#B392F0">systemctl</span><span style="color:#9ECBFF"> restart</span><span style="color:#9ECBFF"> autofs.service</span></span>
+<span class="line"></span></code></pre>
+<p>为了可以快速进入这个挂载的远程目录，可以添加一条 alias，这样子在终端里一敲 nas 就会自动进入远程目录了。在配置文件适当的位置添加以下命令：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#F97583">alias</span><span style="color:#E1E4E8"> nas</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'cd /home/nas/laomai/'</span></span>
+<span class="line"></span></code></pre>
+<p>哈哈哈，好像扯很远了，回到将 Push 到 Gitee 里文档文件备份到 Nas 上这个问题里，既然有虚拟机 24 小时在跑，那么以下所有自动化都会跑在上面那个 Debian11 的虚拟机上。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D"># 进入挂载好的远程目录</span></span>
+<span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> /home/nas/laomai</span></span>
+<span class="line"><span style="color:#6A737D"># 创建并进入obsidian目录</span></span>
+<span class="line"><span style="color:#B392F0">mkdir</span><span style="color:#9ECBFF"> obsidian</span><span style="color:#E1E4E8"> &#x26;&#x26; </span><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> obsidian</span></span>
+<span class="line"><span style="color:#6A737D"># 创建Git</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> init</span></span>
+<span class="line"><span style="color:#6A737D"># 添加远程仓库</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> remote</span><span style="color:#9ECBFF"> add</span><span style="color:#9ECBFF"> gitee</span><span style="color:#9ECBFF"> git@gitee.com:laomai/laomai.org.git</span></span>
+<span class="line"><span style="color:#6A737D"># 拉取</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> pull</span><span style="color:#9ECBFF"> gitee</span><span style="color:#9ECBFF"> main</span></span>
+<span class="line"></span></code></pre>
+<p>七、创建 Temp 目录并创建相对应的 Crontab 脚本；</p>
+<p>这个目录的作用是组合 Hugo 程序与文章，然后推送到 Github，再让 Github Actions 完成真正的自动化构建。上面的流程图可以看到，我在个性配置或者修改主题时，也是用 Git 去管理代码。平时开发就用 Dev 分支，完成一个功能或者版本时就合并到 Main 这个主分支上，Temp 拉取 Hugo 程序时只会拉取 Main 这个主分支，两个分支很好的避免了开发到一半时就被 Crontab 脚本自动拉取并推送到线上。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D"># 进入挂载好的远程目录</span></span>
+<span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> /home/nas/laomai</span></span>
+<span class="line"><span style="color:#6A737D"># 创建并进入Temp目录</span></span>
+<span class="line"><span style="color:#B392F0">mkdir</span><span style="color:#9ECBFF"> Temp</span><span style="color:#E1E4E8"> &#x26;&#x26; </span><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> Temp</span></span>
+<span class="line"><span style="color:#6A737D"># 创建Git</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> init</span></span>
+<span class="line"><span style="color:#6A737D"># 添加远程仓库</span></span>
+<span class="line"><span style="color:#6A737D"># 这里添加两个远程仓库 从Gitee上拉取 推送到Github</span></span>
+<span class="line"><span style="color:#6A737D"># Gitee这个仓库与上面的仓库不是同一个 这个是用来托管我对Hugo的个性配置和主题的</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> remote</span><span style="color:#9ECBFF"> add</span><span style="color:#9ECBFF"> gitee</span><span style="color:#9ECBFF"> git@gitee.com:laomai/newHugo.git</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> remote</span><span style="color:#9ECBFF"> add</span><span style="color:#9ECBFF"> github</span><span style="color:#9ECBFF"> git@github.com:laomai/newHugo.git</span></span>
+<span class="line"></span></code></pre>
+<p>接下来编辑虚拟机上的脚本，同样在<code>$HOME</code>目录创建一个<code>.crontab-sh</code>的隐藏目录。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D"># 在$HOME目录下创建隐藏文件夹.crontab-sh</span></span>
+<span class="line"><span style="color:#B392F0">mkdir</span><span style="color:#9ECBFF"> ~/.crontab-sh</span></span>
+<span class="line"><span style="color:#6A737D"># 分别创建并编辑脚本文件</span></span>
+<span class="line"><span style="color:#6A737D"># 脚本内容为下方对应的代码块</span></span>
+<span class="line"><span style="color:#B392F0">vim</span><span style="color:#9ECBFF"> ~/.crontab-sh/autoPull.sh</span></span>
+<span class="line"><span style="color:#B392F0">vim</span><span style="color:#9ECBFF"> ~/.crontab-sh/buildHugo.sh</span></span>
+<span class="line"></span></code></pre>
+<p><code>autoPull.sh</code>用作自动拉取文章内容：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D">#!/bin/bash</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> /home/nas/laomai/obsidian</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> pull</span><span style="color:#9ECBFF"> gitee</span><span style="color:#9ECBFF"> main</span></span>
+<span class="line"></span></code></pre>
+<p><code>buildHugo.sh</code>用作自动推送到 Github 上自动化构建：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D">#!/bin/bash</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">echo</span><span style="color:#79B8FF"> -e</span><span style="color:#9ECBFF"> "\033[0;32mDeploying updates to laomai...\033[0m"</span></span>
+<span class="line"><span style="color:#E1E4E8">msg</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"rebuilding site `</span><span style="color:#E1E4E8">TZ</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">UTC-8 </span><span style="color:#B392F0">date</span><span style="color:#9ECBFF"> +%Y-%m-%d" "%H:%M:%S`"</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> [ </span><span style="color:#79B8FF">$#</span><span style="color:#F97583"> -eq</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8"> ]</span></span>
+<span class="line"><span style="color:#F97583">then</span><span style="color:#E1E4E8"> msg</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">$1</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"><span style="color:#F97583">fi</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> /home/nas/laomai/Temp</span></span>
+<span class="line"><span style="color:#6A737D"># 拉取Gitee上的Main分支</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> pull</span><span style="color:#9ECBFF"> gitee</span><span style="color:#9ECBFF"> main</span><span style="color:#79B8FF"> --rebase</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 将Obsidian上的文章内容复制过来</span></span>
+<span class="line"><span style="color:#B392F0">/bin/cp</span><span style="color:#79B8FF"> -rf</span><span style="color:#9ECBFF"> /home/nas/laomai/obsidian/老麦笔记/diary</span><span style="color:#9ECBFF"> /home/nas/laomai/Temp/content</span></span>
+<span class="line"><span style="color:#B392F0">/bin/cp</span><span style="color:#79B8FF"> -rf</span><span style="color:#9ECBFF"> /home/nas/laomai/obsidian/老麦笔记/post</span><span style="color:#9ECBFF"> /home/nas/laomai/Temp/content</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 推送到Github</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> add</span><span style="color:#9ECBFF"> .</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> commit</span><span style="color:#79B8FF"> -m</span><span style="color:#9ECBFF"> "</span><span style="color:#E1E4E8">$msg</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> push</span><span style="color:#79B8FF"> -u</span><span style="color:#79B8FF"> --force</span><span style="color:#9ECBFF"> github</span><span style="color:#9ECBFF"> main</span></span>
+<span class="line"></span></code></pre>
+<p>关于将文章内容复制，为什么<code>cp</code>这个命令要在前面加上<code>/bin</code>？其实在终端上输入<code>alias</code>就会明白了。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#B392F0">root@debian:~#</span><span style="color:#9ECBFF"> alias</span></span>
+<span class="line"><span style="color:#F97583">alias</span><span style="color:#E1E4E8"> cp</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'cp -i'</span></span>
+<span class="line"><span style="color:#F97583">alias</span><span style="color:#E1E4E8"> l</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'ls $LS_OPTIONS -lA'</span></span>
+<span class="line"><span style="color:#F97583">alias</span><span style="color:#E1E4E8"> ll</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'ls $LS_OPTIONS -l'</span></span>
+<span class="line"><span style="color:#F97583">alias</span><span style="color:#E1E4E8"> ls</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'ls $LS_OPTIONS'</span></span>
+<span class="line"><span style="color:#F97583">alias</span><span style="color:#E1E4E8"> mv</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'mv -i'</span></span>
+<span class="line"><span style="color:#F97583">alias</span><span style="color:#E1E4E8"> nas</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'cd /home/nas/laomai/'</span></span>
+<span class="line"><span style="color:#F97583">alias</span><span style="color:#E1E4E8"> rm</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'rm -i'</span></span>
+<span class="line"></span></code></pre>
+<p><code>cp</code>这个命令默认就绑定了覆盖前询问的参数，所以直接使用<code>/bin/cp</code>将覆盖前询问这一步去掉。</p>
+<p>八、创建 Crontab 定时任务；</p>
+<p>目前为止我一共创建三个脚本，一个是在 Mac 上运行的，两个是在虚拟机上运行的。</p>
+<p>Mac：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D"># 编辑计时器</span></span>
+<span class="line"><span style="color:#B392F0">crontab</span><span style="color:#79B8FF"> -e</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 每隔十分钟运行一次脚本</span></span>
+<span class="line"><span style="color:#F97583">*</span><span style="color:#E1E4E8">/10 </span><span style="color:#F97583">*</span><span style="color:#F97583"> *</span><span style="color:#F97583"> *</span><span style="color:#F97583"> *</span><span style="color:#E1E4E8"> /etc/profile;</span><span style="color:#B392F0">/bin/sh</span><span style="color:#9ECBFF"> /Users/laomai/.crontab-sh/autoPush.sh</span><span style="color:#F97583"> ></span><span style="color:#9ECBFF"> /dev/null</span><span style="color:#F97583"> 2>&#x26;1</span></span>
+<span class="line"></span></code></pre>
+<p>虚拟机：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D"># 编辑计时器</span></span>
+<span class="line"><span style="color:#B392F0">crontab</span><span style="color:#79B8FF"> -e</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 每隔五分钟运行一次脚本</span></span>
+<span class="line"><span style="color:#F97583">*</span><span style="color:#E1E4E8">/5 </span><span style="color:#F97583">*</span><span style="color:#F97583"> *</span><span style="color:#F97583"> *</span><span style="color:#F97583"> *</span><span style="color:#E1E4E8"> /etc/profile;</span><span style="color:#B392F0">/bin/sh</span><span style="color:#9ECBFF"> /root/.crontab-sh/autoPull.sh</span><span style="color:#F97583"> ></span><span style="color:#9ECBFF"> /dev/null</span><span style="color:#F97583"> 2>&#x26;1</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 每隔两小时运行一次脚本</span></span>
+<span class="line"><span style="color:#B392F0">0</span><span style="color:#79B8FF"> *</span><span style="color:#9ECBFF">/2</span><span style="color:#79B8FF"> *</span><span style="color:#79B8FF"> *</span><span style="color:#79B8FF"> *</span><span style="color:#9ECBFF"> /etc/profile</span><span style="color:#E1E4E8">;</span><span style="color:#B392F0">/bin/sh</span><span style="color:#9ECBFF"> /root/.crontab-sh/buildHugo.sh</span><span style="color:#F97583"> ></span><span style="color:#9ECBFF"> /dev/null</span><span style="color:#F97583"> 2>&#x26;1</span></span>
+<span class="line"></span></code></pre>
+<p>九、GitHub Actions</p>
+<p>在存放 Hugo 程序的 GitHub 仓库上开放 Workflow 的权限，不是 Github 设置，是仓库的设置。</p>
+<p>进入仓库 ☞Settings☞Actions☞General☞Workflow permissions☞ 选择 Read and write permissions 与勾选 Allow Github Actions to create and approve pull requests</p>
+<p>在 Hugo 程序根目录上新建<code>.github/workflows/main.yml</code>文件，路径要符合 Github Actions 的规则。</p>
+<p>添加以下内容：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D"># This is a basic workflow to help you get started with Actions</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">build laomai.org</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Controls when the workflow will run</span></span>
+<span class="line"><span style="color:#79B8FF">on</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#6A737D">  # Triggers the workflow on push or pull request events but only for the "main" branch</span></span>
+<span class="line"><span style="color:#85E89D">  push</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    branches</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">'main'</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">  # Allows you to run this workflow manually from the Actions tab</span></span>
+<span class="line"><span style="color:#85E89D">  workflow_dispatch</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># A workflow run is made up of one or more jobs that can run sequentially or in parallel</span></span>
+<span class="line"><span style="color:#85E89D">jobs</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#6A737D">  # This workflow contains a single job called "build"</span></span>
+<span class="line"><span style="color:#85E89D">  build</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#6A737D">    # The type of runner that the job will run on</span></span>
+<span class="line"><span style="color:#85E89D">    runs-on</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">ubuntu-latest</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    # Steps represent a sequence of tasks that will be executed as part of the job</span></span>
+<span class="line"><span style="color:#85E89D">    steps</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#6A737D">      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#85E89D">uses</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">actions/checkout@v3</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#85E89D">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Hugo setup</span></span>
+<span class="line"><span style="color:#6A737D">        # You may pin to the exact commit or the version.</span></span>
+<span class="line"><span style="color:#6A737D">        # uses: peaceiris/actions-hugo@2e89aa66d0093e4cd14751b3028fc1a179452c2e</span></span>
+<span class="line"><span style="color:#85E89D">        uses</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">peaceiris/actions-hugo@v2.4.13</span></span>
+<span class="line"><span style="color:#85E89D">        with</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#6A737D">          # The Hugo version to download (if necessary) and use. Example: 0.58.2</span></span>
+<span class="line"><span style="color:#85E89D">          hugo-version</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0.110.0</span></span>
+<span class="line"><span style="color:#6A737D">          # Download (if necessary) and use Hugo extended version. Example: true</span></span>
+<span class="line"><span style="color:#85E89D">          extended</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#85E89D">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Build Hugo</span></span>
+<span class="line"><span style="color:#85E89D">        run</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">hugo --minify</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#85E89D">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">Deploy</span></span>
+<span class="line"><span style="color:#85E89D">        uses</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">peaceiris/actions-gh-pages@v3</span></span>
+<span class="line"><span style="color:#85E89D">        with</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">          github_token</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">${{ secrets.GITHUB_TOKEN }}</span></span>
+<span class="line"><span style="color:#85E89D">          publish_dir</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">./public</span></span>
+<span class="line"></span></code></pre>
+<p>十、去掉 MacOS 和群晖系统上多出来的文件与目录；</p>
+<p>在 Hugo 程序根目录上添加 Git 的忽略规则，新建<code>.gitignore</code>文件：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#B392F0">public</span></span>
+<span class="line"><span style="color:#B392F0">node_modules</span></span>
+<span class="line"><span style="color:#B392F0">.vscode</span></span>
+<span class="line"><span style="color:#B392F0">.prettierrc</span></span>
+<span class="line"><span style="color:#B392F0">@eaDir</span></span>
+<span class="line"><span style="color:#B392F0">.DS_Store</span></span>
+<span class="line"></span></code></pre> </div> <div class="mt-8 flex flex-wrap items-center justify-between gap-6 text-sm sm:mt-12 sm:text-base"> <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm"> <a class="text-main hover:underline hover:underline-offset-4" href="/tags/折腾">
+#折腾 </a><a class="text-main hover:underline hover:underline-offset-4" href="/tags/OBSIDIAN">
+#OBSIDIAN </a><a class="text-main hover:underline hover:underline-offset-4" href="/tags/HUGO">
+#HUGO </a> </div> <button class="inline-flex items-center justify-center px-6 py-2 text-sm leading-tight italic no-underline text-main bg-main border border-main border-dashed rounded-full transition hover:bg-muted hover:border-solid whitespace-nowrap copy-url-button" aria-label="Copy link" data-url="https://www.iamlm.com/blog/118.Obsidian%E4%B8%8A%E7%9A%84%E5%86%85%E5%AE%B9%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E4%B8%BAHugo%E5%8D%9A%E5%AE%A2/" data-tooltip-default="Copy link" data-tooltip-success="Copied">Share</button> </div> </article> <div class="my-16 sm:my-24"> <h2 class="mb-12 text-xl font-semibold italic sm:mb-16 sm:text-2xl">Read Next</h2> <a class="flex justify-between items-start gap-8 group mb-10 sm:mb-12" href="/blog/119.记我群晖上的Docker项目：ddns-go和acme.sh/"> <div class="grow prose prose-dante"> <h3 class="group-hover:underline group-hover:decoration-dashed group-hover:underline-offset-8 group-hover:decoration-1">记我群晖上的Docker项目：ddns-go和acme.sh</h3> <div class="mt-1 text-sm leading-normal"> <time datetime="2023-02-18T00:00:00.000Z"> February 18, 2023 </time>  </div>  </div> <div class="hidden italic opacity-0 transition group-hover:opacity-100 sm:inline-flex sm:gap-1 sm:items-center sm:shrink-0">
+Read Post <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current w-4 h-4"> <path d="M4.286 12c0-0.533 0.432-0.964 0.964-0.964v0h11.172l-4.14-4.138c-0.175-0.175-0.283-0.416-0.283-0.683 0-0.533 0.432-0.965 0.965-0.965 0.267 0 0.508 0.108 0.683 0.283v0l5.785 5.785c0.175 0.175 0.283 0.416 0.283 0.683s-0.108 0.508-0.283 0.683l-5.785 5.785c-0.175 0.175-0.416 0.283-0.683 0.283-0.533 0-0.965-0.432-0.965-0.965 0-0.267 0.108-0.508 0.283-0.683v0l4.14-4.138h-11.172c-0.533 0-0.964-0.432-0.964-0.964v0z"></path> </svg> </div> </a> <a class="flex justify-between items-start gap-8 group mb-10 sm:mb-12" href="/blog/117.MacOS环境搭建记录分享/"> <div class="grow prose prose-dante"> <h3 class="group-hover:underline group-hover:decoration-dashed group-hover:underline-offset-8 group-hover:decoration-1">MacOS环境搭建记录分享</h3> <div class="mt-1 text-sm leading-normal"> <time datetime="2023-02-09T00:00:00.000Z"> February 9, 2023 </time>  </div>  </div> <div class="hidden italic opacity-0 transition group-hover:opacity-100 sm:inline-flex sm:gap-1 sm:items-center sm:shrink-0">
+Read Post <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current w-4 h-4"> <path d="M4.286 12c0-0.533 0.432-0.964 0.964-0.964v0h11.172l-4.14-4.138c-0.175-0.175-0.283-0.416-0.283-0.683 0-0.533 0.432-0.965 0.965-0.965 0.267 0 0.508 0.108 0.683 0.283v0l5.785 5.785c0.175 0.175 0.283 0.416 0.283 0.683s-0.108 0.508-0.283 0.683l-5.785 5.785c-0.175 0.175-0.416 0.283-0.683 0.283-0.533 0-0.965-0.432-0.965-0.965 0-0.267 0.108-0.508 0.283-0.683v0l4.14-4.138h-11.172c-0.533 0-0.964-0.432-0.964-0.964v0z"></path> </svg> </div> </a> </div><div id="tcomment"></div> <button class="inline-flex items-center justify-center px-6 py-2 text-sm leading-tight italic no-underline text-main bg-main border border-main border-dashed rounded-full transition hover:bg-muted hover:border-solid whitespace-nowrap tk">Load Comments</button> <style>
+  /* twikoo 评论样式 */
+  /* https://github.com/lmm214/immmmm/blob/da5bc900ab2b0d2ad2ed76c76ae515dc7788af36/themes/hello-friend/static/theme-20230619.css#L1392 */
+  .twikoo {
+    overflow: visible !important;
+  }
+  .tk-row.actions .tk-action-icon.__markdown,
+  .tk-preview,
+  .tk-content p a.at,
+  .tk-tag.tk-tag-green {
+    display: none !important;
+  }
+  .tk-nick-link:hover {
+    color: inherit !important;
+  }
+  .el-button.tk-preview {
+    border: none;
+  }
+  .tk-replies .tk-content {
+    font-size: 0.95em !important;
+  }
+  .el-input.is-active .el-input__inner,
+  .el-input__inner:focus,
+  .el-textarea__inner {
+    border-color: #ccc !important;
+  }
+  .el-button--primary,
+  .el-button--primary.is-disabled,
+  .el-button--primary.is-disabled:active,
+  .el-button--primary.is-disabled:focus,
+  .el-button--primary.is-disabled:hover {
+    color: #fff !important;
+    background-color: #252627 !important;
+    border-color: #4a4b50 !important;
+  }
+  .el-button:not(.el-button--primary):not(.el-button--text):hover {
+    color: currentColor !important;
+    background-color: rgba(144, 147, 153, 0.063) !important;
+    border-color: rgba(144, 147, 153, 0.31) !important;
+  }
+  .tk-action-icon svg {
+    fill: #434a56 !important;
+  }
+  .tk-comments-title .tk-icon svg {
+    fill: #ccc !important;
+  }
+  .tk-action-count {
+    color: #434a56 !important;
+  }
+  .dark .el-button,
+  .dark .el-input__inner,
+  .dark .el-textarea__inner {
+    color: silver !important;
+    background-color: #252627 !important;
+    border-color: #4a4b50 !important;
+  }
+  .dark .tk-meta-input .el-input .el-input-group__prepend {
+    color: silver !important;
+    background-color: #4a4b50 !important;
+    border-color: #4a4b50 !important;
+  }
+  .dark .el-button--primary,
+  .dark .el-button--primary.is-disabled,
+  .dark .el-button--primary.is-disabled:active,
+  .dark .el-button--primary.is-disabled:focus,
+  .dark .el-button--primary.is-disabled:hover {
+    color: #fff !important;
+    background-color: #252627 !important;
+    border-color: #4a4b50 !important;
+  }
+  .dark .tk-action-icon svg {
+    fill: #ccc !important;
+  }
+  .dark .tk-comments-title .tk-icon svg {
+    fill: #4a4b50 !important;
+  }
+  .dark .tk-action-count {
+    color: #ccc !important;
+  }
+  .OwO .OwO-body {
+    z-index: 99;
+  }
+  .OwO .OwO-body .OwO-items-emoji .OwO-item {
+    font-size: 23px !important;
+  }
+  .OwO .OwO-body .OwO-items-image .OwO-item {
+    max-width: calc(20% - 10px) !important;
+  }
+  .dark .OwO-body {
+    color: silver !important;
+    background-color: #252627 !important;
+    border-color: #4a4b50 !important;
+  }
+  .dark .OwO .OwO-body .OwO-bar {
+    border-top: 1px solid #4a4b50 !important;
+  }
+  .dark .OwO .OwO-body .OwO-items .OwO-item,
+  .dark .OwO .OwO-body .OwO-bar {
+    background: #4a4b50 !important;
+    color: #ccc !important;
+  }
+  .dark .OwO .OwO-body .OwO-bar .OwO-packages li:hover,
+  .dark .OwO .OwO-body .OwO-items-image .OwO-item:hover,
+  .dark .OwO .OwO-body .OwO-bar .OwO-packages .OwO-package-active {
+    background-color: #252627 !important;
+  }
+</style>    </main> <footer class="mx-auto w-full max-w-3xl pb-4 pt-8 sm:pt-16" data-astro-cid-sz7xmlte> <div class="flex flex-col pt-6 text-sm sm:flex-row sm:items-center sm:justify-between" data-astro-cid-sz7xmlte> <div class="mb-4 flex flex-wrap gap-x-4 gap-y-1" data-astro-cid-sz7xmlte> <a href="/about/" data-astro-cid-sz7xmlte>About</a><a href="/blog/" data-astro-cid-sz7xmlte>Blog</a><a href="/tags/" data-astro-cid-sz7xmlte>Tags</a><a href="/links/" data-astro-cid-sz7xmlte>Links</a><a href="/feed.xml" data-astro-cid-sz7xmlte>Rss</a> </div> <div class="mb-4 flex flex-wrap gap-x-4 gap-y-1" data-astro-cid-sz7xmlte> <a class="inline-flex items-center justify-center text-sm" href="https://280562.com/@laomai" target="_blank" rel="noopener noreferer" data-astro-cid-sz7xmlte> Mastodon </a><a class="inline-flex items-center justify-center text-sm" href="https://github.com/laomaiorg" target="_blank" rel="noopener noreferer" data-astro-cid-sz7xmlte> Github </a><a class="inline-flex items-center justify-center text-sm" href="https://twitter.com/laomaiorg" target="_blank" rel="noopener noreferer" data-astro-cid-sz7xmlte> X/Twitter </a> </div> </div> <div class="flex flex-col-reverse border-t border-dashed border-main pt-4 text-sm sm:flex-row sm:items-center sm:justify-between" data-astro-cid-sz7xmlte> <p data-astro-cid-sz7xmlte>
+2020-2024&nbsp;&copy;&nbsp;<a href="/" data-astro-cid-sz7xmlte>老麦</a> <a target="_blank" rel="noopener noreferer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" data-astro-cid-sz7xmlte>CC BY-NC-SA 4.0</a> </p> <div class="flex flex-col md:flex-row md:space-x-3" data-astro-cid-sz7xmlte> <a class="py-1" href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferer" data-astro-cid-sz7xmlte>粤ICP备20055414号</a> <div class="flex items-center space-x-1" data-astro-cid-sz7xmlte> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAoCAYAAACWwljjAAAFQklEQVRYw+3Wa1BUdRjH8SOpMeg4WhZGpDIxiaaTeUFgWrxE4AVRQJGlRRAVIV1JkbgMgQLi5AVBQSVLSp0xlEAUKBEEFZCrCstll8UV2AV2YbmoGCrYv31+R95UL5pmmtamZ+bz6rz5nvOc/5zDcX9jGLs/iTxuyvIlWYkRFeTHA2HVRFtzfhthTG5KuH96/vUgNlC4mMgyw1NJit/aAXLKazYje9xtIMZ/OZz50gW+9hcNkvoLEemEPbnrSP47QYwxQ5Ifv54RqzcXwFFvSyjaOhfavN8F7Y5ZcC/HH9JOB4LNa9Zw5YA76OZV8vIGMdZtSp7cDrtOnOavYiQhTAiPwi1AMtIQaqyngsxpBtw2GAGDKfaQmpUAa6xc4Vfp4UtEdzAMycsT9JQ1Tyctl/2eEkuTlYysF/rCUNxMqDEzgTqzSXBnpgnIHCzgjvEEuD52DLBr3rA1MAaWmNtB582wdtIljZ9G9D+IPU6aTxIPBjHCcXvg3CEh9K2fDLWvjIH6D6fwTIyheuwEqLUyhzLOALq8pkN+bgRw3HY4FBsMzxojZxP9DequLjAlQwVrbpIjhyIY4UYGQ/buhdBqPxlk3Gion2IMDQIz3kJe/ZS34I7uHkmD7VSQVgYDNyIAwsNCgfXGXoOBPjP9DKrOCAogA2etGTmTHAMcFwFZye7wS5QlVHGjoEw4A2qPCUBZ6AzNcQ5Q/YYRdO+YB1U3dsDwypLio4FJ3ECryIzWz6Cm3NgTRHN8HiPF6eHAGSbAdh8feFZkB7krzaHE9h2o85sDsiAbkIsXQMN+e2CtGyF0kzdwXCgU5++D/ouLQFV4OEU/g2Q/iNuIPNaKkQflAWBqexxGjhLDVUcL6IwSQN3SGVChe6FJg9dckCx6D1QBliDZLIAxo7eA8eyv4KE0BJqTrHkZvnL9DJKn+Twmt0NsGGHZy2Dn3kQYfsQ53Hh4/r4RNGz8AIpdzKEuaAF0RC2E57MmQgE3ATjuM/CPiANW7AqSfQJQ5vk362eQKmd3JrmXsoSRocpNIMnbB9zbceDIWUPmuHFQNMkISqa9DpUvNK6YDpW2s8DfwBK48WFQnhMCgzUBoLy0BrRVe5P0NWjPLdKUsJiR1tR1wGp8IeZwMgx/SrgRvjxuAziNcwLvyathLOcJHLflhRDYGRYFrNET2rJ5yvPLoas0tOj/oL8UpC4JHyTSU+6MNCS4gvKoAB5WiKG+MAQSg0WwLXQ/ZJ3xhao0FxB5hYCbUwAEfhEF3Td8QP2dAOQnPwFlxgrolUVq9TPoaX+ZB2nLc2Gk6awj1MU78HZZwJMid2Byb550JQwVO0NfxlJgdz14vWKeRAiK6DlQF28PLZdcoLNcBIO92bb6GTQ8Q/13RURT6tlH2gvXMlITLYD6uI+gp2ozdF0VQXumM6ivCqGvahM8kPiDItkeGo8tB025GFQ3xFrSr06zI3/4yde7oN7m0sWk5eKWDqK5JWJQvAHac9ygq3Adr9gTNNc3QG85rzPfHe5/7wDtPwuhp/Zz6CjyhaZzwi6ivfetHdH/oP77+3PJQOsuRnqkQdCa4wWqyx6gyecpL64GTaEX7ycXUJz4GJp1B4O0X/Hg0Xp1tFV+8Ei1k6c5coHofxBrrzQinbKYo0SVJ+wn6iurGHlY5gY911aDJnMFaHXXiDp9GQyvtKfUA9QFTtBZ7gPdit0tpFd9OpwwFmlA9D/o9yNLDpxIKmI8PMnNSNtviCLVpYTITzrXEGWaq4qos0WgOPdpCenIF+eRrurjB4k0PXopYZG6gMg/D/gNBUxhAbSAmKMAAAAASUVORK5CYII=" alt="公安网备" data-astro-cid-sz7xmlte width="14" height="14" loading="lazy" decoding="async"><a href="https://beian.mps.gov.cn/#/query/webSearch?code=44180302000162" target="_blank" rel="noopener noreferer" class="py-1" data-astro-cid-sz7xmlte>
+粤公网安备44180302000162
+</a> </div> </div> </div> </footer> <!-- Umami --> <script async defer src="https://umami.iamlm.com/laomai.js" data-website-id="85a9edfb-5859-4f66-8a28-f7f8548a80b3"></script>  </div> </body></html> 

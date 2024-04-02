@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="en" class="break-words antialiased" data-astro-transition-scope="astro-tyfwoq7n-1"> <head><!-- High Priority Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>记我群晖上的Docker项目：ddns-go和acme.sh | 老麦笔记</title><meta name="generator" content="Astro v4.5.2"><!-- Low Priority Global Metadata --><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" href="/feed.xml" title="RSS"><!-- Page Metadata --><link rel="canonical" href="https://www.iamlm.com/blog/119.%E8%AE%B0%E6%88%91%E7%BE%A4%E6%99%96%E4%B8%8A%E7%9A%84Docker%E9%A1%B9%E7%9B%AE%EF%BC%9Addns-go%E5%92%8Cacme.sh/"><meta name="description" content=""><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:url" content="https://www.iamlm.com/blog/119.%E8%AE%B0%E6%88%91%E7%BE%A4%E6%99%96%E4%B8%8A%E7%9A%84Docker%E9%A1%B9%E7%9B%AE%EF%BC%9Addns-go%E5%92%8Cacme.sh/"><meta property="og:title" content="记我群晖上的Docker项目：ddns-go和acme.sh | 老麦笔记"><meta property="og:description" content=""><meta property="og:image" content="https://www.iamlm.com/images/laomai.jpg"><meta property="og:image:alt" content="老麦笔记 - 平淡、简单，时而折腾，时而游戏，时而静静。"><!-- X/Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://www.iamlm.com/blog/119.%E8%AE%B0%E6%88%91%E7%BE%A4%E6%99%96%E4%B8%8A%E7%9A%84Docker%E9%A1%B9%E7%9B%AE%EF%BC%9Addns-go%E5%92%8Cacme.sh/"><meta property="twitter:title" content="记我群晖上的Docker项目：ddns-go和acme.sh | 老麦笔记"><meta property="twitter:description" content=""><meta property="twitter:image" content="https://www.iamlm.com/images/laomai.jpg"><meta name="twitter:image:alt" content="老麦笔记 - 平淡、简单，时而折腾，时而游戏，时而静静。"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/_slug_.BhN3AoNt.css" /><script type="module" src="/_astro/hoisted.D244R46j.js"></script><style>[data-astro-transition-scope="astro-tyfwoq7n-1"] { view-transition-name: astro-tyfwoq7n-1; }@layer astro { ::view-transition-old(astro-tyfwoq7n-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(astro-tyfwoq7n-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(astro-tyfwoq7n-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(astro-tyfwoq7n-1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-tyfwoq7n-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-tyfwoq7n-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-tyfwoq7n-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-tyfwoq7n-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-tyfwoq7n-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-tyfwoq7n-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-tyfwoq7n-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-tyfwoq7n-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="bg-main text-main"> <div class="flex min-h-screen flex-col px-4 py-4"> <div class="w-12 h-12 xl:fixed"> <a href="/" title="老麦笔记" aria-label="Back To Home Page"> <svg viewBox="0 0 512 512" width="48" height="48" xmlns="http://www.w3.org/2000/svg"> <path class="opacity-40 duration-1000 hover:fill-stone-900 hover:opacity-100 dark:fill-white dark:hover:fill-stone-100" d="M71.5 142.3c.6-5.9-1.7-11.8-6.1-15.8L20.3 72.1V64h140.2l108.4 237.7L364.2 64h133.7v8.1l-38.6 37c-3.3 2.5-5 6.7-4.3 10.8v272c-.7 4.1 1 8.3 4.3 10.8l37.7 37v8.1H307.3v-8.1l39.1-37.9c3.8-3.8 3.8-5 3.8-10.8V171.2L241.5 447.1h-14.7L100.4 171.2v184.9c-1.1 7.8 1.5 15.6 7 21.2l50.8 61.6v8.1h-144v-8L65 377.3c5.4-5.6 7.9-13.5 6.5-21.2V142.3z"></path> </svg> </a> </div> <!-- <Nav /> --> <div class="absolute top-4 right-4 z-10 md:fixed"> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="Z22rRWJ" component-url="/_astro/ThemeToggle.BA4F87Rh.js" component-export="default" renderer-url="/_astro/client.DKLxeLh-.js" props="{}" ssr="" client="only" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:&quot;vue&quot;}"></astro-island> </div>  <!-- {showHeader && <Header />} --> <main class="mx-auto w-full max-w-3xl grow">  <article class="mb-16 mt-8 sm:mb-24 xl:mt-20"> <header class="mb-8"> <h1 class="text-3xl font-bold leading-tight sm:text-5xl sm:leading-tight">记我群晖上的Docker项目：ddns-go和acme.sh</h1> <div class="mt-4 text-sm"> <time datetime="2023-02-18T00:00:00.000Z"> February 18, 2023 </time>  </div> </header> <div class="prose prose-dante max-w-none prose-a:underline-offset-4"> <p>由于在用的云服务器即将到期，续费的价格实在难以接受。蹲守了几个促销活动都未能买到自己满意的产品，故产生了使用回静态博客并托管在免费的 Github Pages 上。众所周知，在国内使用 Github 其实是挺难受的，速度慢点还能忍受，间歇性抽风就有点离谱了。测试套上 Cloudflare 后有明显的改善，这也是我现在使用的方案。当然啦，一些地区连接 Cloudflare 依然会很慢，但是免费的东西也不能有太过的要求对吧，走一步是一步吧。</p>
+<p>使用 Cloudflare 就要将域名的 DNS 解析到 Cloudflare 上，方法很简单，设置好大概几分钟就能生效。但将域名的 DNS 更改成 Cloudflare 就会引出一个新的问题，一直以来我都是通过群晖自带的 DDNS 这个功能将家里的公网 IP 解析到域名上，这样当我不在家时就可以方便地通过域名访问到家里的设备了。这时问题来了，群晖上的 DDNS 服务供用商列表上并没有 Cloudflare，好在网上有很多给群晖上的 DDNS 添加服务供应商的教程，我也曾实际操作过，不过后来有一次我重装了群晖系统，自然而然上次添加的列表就失效了。</p>
+<p>现在的我已完全中了 Docker 的毒，哪怕明知道使用 Docker 会产生一点点点性能上的损失，但实在是架不住其灵活易用的优势。所以这次折腾我不想再改群晖系统上的东西了，能在 Docker 上解决的直接在 Docker 上跑。</p>
+<h2 id="ddns-go">DDNS-GO</h2>
+<p><a href="https://github.com/jeessy2/ddns-go">https://github.com/jeessy2/ddns-go</a></p>
+<blockquote>
+<p>简单好用的 DDNS。自动更新域名解析到公网 IP(支持阿里云、腾讯云 dnspod、Cloudflare、Callback、华为云、百度云、porkbun、GoDaddy、Google Domains)。</p>
+</blockquote>
+<p>作者是国人，使用说明是中文的，看着真舒服。真叫一看就懂，当然啦，这跟作者表达得清晰有很大关系。</p>
+<h3 id="群晖安装方法">群晖安装方法：</h3>
+<ul>
+<li>套件中心下载 docker 并打开</li>
+<li>注册表中搜索<code>ddns-go</code>并下载</li>
+<li>映像 -> 选择<code>jeessy/ddns-go</code> -> 启动 -> 高级设置 -> 网络中勾选<code>使用与 Docker Host 相同的网络</code>，高级设置中勾选<code>启动自动重新启动</code></li>
+<li>在浏览器中打开<code>http://群晖IP:9876</code>，修改你的配置，成功</li>
+</ul>
+<p>以上是作者大大在 Github 上给出的安装方法，很简单。第三步时可以将 Docker 容器里的 root 目录映射到 Nas 的某个目录上，简单地备份一下 DDNS 的设置，但是其实该项目真的很简单，要设置的地方也就两三个地方，所以按照作者给的安装方法足够。</p>
+<p>群晖 7.1 系统 Docker 部署 DDNS-GO 的简易过程截图：</p>
+<p><strong>选择使用与 Docker Host 相同的网络</strong>，这样可以使用 IPV6！</p>
+<p><img  src="/_astro/163eddca04e2e9-1.B47Ho0yF_1iKMfr.webp" alt="截屏2023-02-16 15.32.33" width="1186" height="1080" loading="lazy" decoding="async"></p>
+<p><strong>勾选启用自动重新启动</strong>，如果群晖上安装了 Web Station 的话可以也将此项勾选，方便修改访问的端口。</p>
+<p><img  src="/_astro/163eddcd26397d-1.BfFhPnMK_ZbPLnt.webp" alt="截屏2023-02-16 15.23.00" width="1186" height="1080" loading="lazy" decoding="async"></p>
+<p><strong>添加文件夹</strong></p>
+<p><img  src="/_astro/163eddce6daaca-1.b5LNZ249_2pnKtg.webp" alt="截屏2023-02-16 15.23.43" width="1186" height="1080" loading="lazy" decoding="async"></p>
+<p><strong>将/docker/ddns-go 目录映射到容器里的/root 目录</strong></p>
+<p><img  src="/_astro/163eddcf2d4afa-1.BSVuvJAW_Z1noyN1.webp" alt="截屏2023-02-16 15.24.32" width="1186" height="1080" loading="lazy" decoding="async"></p>
+<h3 id="相关设置">相关设置</h3>
+<p>DDNS-GO 的设置也十分的简单，以 Cloudflare 为例，勾选 Cloudflare，点击服务商列表下面的<a href="https://dash.cloudflare.com/profile/api-tokens">创建令牌->编辑区域 DNS (使用模板)</a>跳转到 Cloudflare 并创建一个新的令牌<a href="../assets/images/postImages/laomai/2023/02/17/163ef164fa7d73-1.webp">（参考）</a>。在 API 令牌里找到新建的令牌，点击右边的三个点，选择投放<a href="../assets/images/postImages/laomai/2023/02/17/163ef1dfe4ca5b-1.webp">（参考）</a>，将得到的 Token 复制到 DDNS-GO 即可。至于其他设置，其实每一项都有提示，根据自己的实际情况进行相应的设置即可<a href="../assets/images/postImages/laomai/2023/02/17/163ef1d25af601-1.webp">（参考）</a>。</p>
+<h2 id="acmesh">acme.sh</h2>
+<p>用作自动申请与续期 SSL 证书的工具，由于 80/443 这两个端口无法使用，所以群晖自带的申请与续期证书是无法使用的，这时就要用到 acme.sh 这个工具了。在群晖上可以选择直接安装或者 Docker 部署，直接安装可参考官方的 Wiki 文档：</p>
+<p><a href="https://github.com/acmesh-official/acme.sh/wiki/Synology-NAS-Guide">https://github.com/acmesh-official/acme.sh/wiki/Synology-NAS-Guide</a></p>
+<p>官方这个文档写得很全面，可根据自己的环境搜索相关的字眼就可以找到对应该的安装方法与要求。</p>
+<h3 id="docker-部署">Docker 部署</h3>
+<p>以群晖的 Docker 部署为例，因与部署 DDNS- GO 时的界面几乎一样，因此以下只用文字描述。</p>
+<ul>
+<li>注册表中搜索<code>neilpang/acme.sh</code>并下载</li>
+<li>映像 -> 选择<code>neilpang/acme.sh</code>-> 启动 -> 网络中勾选<code>使用与 Docker Host 相同的网络</code> -> 下一步 -> 将容器名称修改为：<code>acme.sh</code>（后面的脚本要用到这个容器名称） -> 勾选<code>启动自动重新启动</code> -> 高级设置 -> 新增下面的环境变量 -> 执行命令 -> 在命令栏添加 -> <code>daemon</code>（打开容器的守护进程） -> 下一步 -> 下一步（不用设置端口） -> 添加文件夹 -> 将/docker/acme 目录映射到容器里的/acme.sh 目录 -> 完成。</li>
+</ul>
+<p><img  src="/_astro/163f047ed75874-1.CkKT8haa_Z1SdJlK.webp" alt="截屏2023-02-18 11.05.22" width="1292" height="1086" loading="lazy" decoding="async"></p>
+<p>注：</p>
+<ul>
+<li><code>CF_Key</code>查看方法，登陆<a href="https://dash.cloudflare.com/profile/api-tokens">Cloudflare</a> -> 右上角的用户按钮 -> 我的个人资料 -> API 令牌 -> Global API Key；</li>
+<li><code>CF_Email</code>为你的邮箱；</li>
+<li><code>SYNO_Port</code>群晖的<code>http</code>的端口，如若修改则改为相对应的端口号；</li>
+<li><code>SYNO_Username</code>群晖用户名；</li>
+<li><code>SYNO_Password</code>群晖密码；</li>
+<li><code>SYNO_Certificate</code>证书名字，用作多个证书之间的区分，可设置为空字符串<code>""</code>；</li>
+<li><code>SYNO_Create</code>证书不存在时就自动创建，如果<code>SYNO_Certificate</code>为<code>""</code>时可不用新增此变量；</li>
+<li><code>ACME_EAB_KID</code>为 Zerossl 邮箱；</li>
+<li><code>ACME_EAB_HMAC_KEY</code>查看方法，登陆<a href="https://app.zerossl.com/developer">ZeroSSL</a> -> Developer -> ZeroSSL API Key；</li>
+</ul>
+<p>证书服务商我选择的是 ZeroSSL，这个服务需要注册，得到上面变量里的 API Key。如果使用 Let’s Encrypt 的话最后两个变量不用新增，但是 Let’s Encrypt 有申请限制（<a href="https://github.com/acmesh-official/acme.sh/wiki/CA">详情可查看</a>），建议还是使用 ZeroSSL，注册很简单的。</p>
+<p>关于群晖的更多变量请查阅：<a href="https://github.com/acmesh-official/acme.sh/wiki/deployhooks#20-deploy-the-cert-into-synology-dsm">https://github.com/acmesh-official/acme.sh/wiki/deployhooks#20-deploy-the-cert-into-synology-dsm</a></p>
+<h3 id="脚本文件">脚本文件</h3>
+<p>在本地新建<code>run.sh</code>，内容为：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0"><code><span class="line"><span style="color:#6A737D">#!/bin/bash</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># docker exec 容器名称 运行命令；</span></span>
+<span class="line"><span style="color:#6A737D"># 第一个acme.sh是容器的名称，上文新建容器时有提到，如果不一样，请修改为对应的容器名称；</span></span>
+<span class="line"><span style="color:#6A737D"># 第二个acme.sh是运行命令；</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 注册ZeroSSL</span></span>
+<span class="line"><span style="color:#6A737D"># 邮箱更改成你注册ZeroSSL时的邮箱账号；</span></span>
+<span class="line"><span style="color:#6A737D"># 如果证书服务商选择Let's Encrypt，下面这行代码请注释掉；</span></span>
+<span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> exec</span><span style="color:#9ECBFF"> acme.sh</span><span style="color:#9ECBFF"> acme.sh</span><span style="color:#79B8FF">  --register-account</span><span style="color:#79B8FF">  -m</span><span style="color:#9ECBFF"> webmaster@laomai.org</span><span style="color:#79B8FF"> --server</span><span style="color:#9ECBFF"> zerossl</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 生成证书</span></span>
+<span class="line"><span style="color:#6A737D"># 根据证书服务商修改--server，如选择Let's Encrypt的话，对应的值为--server letsencrypt；</span></span>
+<span class="line"><span style="color:#6A737D"># 域名更改为自己的域名；</span></span>
+<span class="line"><span style="color:#6A737D"># 其他设置请参考：https://github.com/acmesh-official/acme.sh/wiki/Synology-NAS-Guide</span></span>
+<span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> exec</span><span style="color:#9ECBFF"> acme.sh</span><span style="color:#9ECBFF"> acme.sh</span><span style="color:#79B8FF"> --force</span><span style="color:#79B8FF"> --log</span><span style="color:#79B8FF"> --issue</span><span style="color:#79B8FF"> --server</span><span style="color:#9ECBFF"> zerossl</span><span style="color:#79B8FF"> --dns</span><span style="color:#9ECBFF"> dns_cf</span><span style="color:#79B8FF"> --dnssleep</span><span style="color:#79B8FF"> 120</span><span style="color:#79B8FF"> -d</span><span style="color:#9ECBFF"> "laomai.org"</span><span style="color:#79B8FF"> -d</span><span style="color:#9ECBFF"> "*.laomai.org"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 部署证书到群晖上</span></span>
+<span class="line"><span style="color:#6A737D"># 域名更改为自己的域名；</span></span>
+<span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> exec</span><span style="color:#9ECBFF"> acme.sh</span><span style="color:#9ECBFF"> acme.sh</span><span style="color:#79B8FF"> --deploy</span><span style="color:#79B8FF"> -d</span><span style="color:#9ECBFF"> "laomai.org"</span><span style="color:#79B8FF"> -d</span><span style="color:#9ECBFF"> "*.laomai.org"</span><span style="color:#79B8FF"> --deploy-hook</span><span style="color:#9ECBFF"> synology_dsm</span></span>
+<span class="line"></span></code></pre>
+<p>将脚本文件上传到上面部署时用作映射的新建目录/docker/acme 里，成功后右键查看脚本文件的路径，创建计划任务时需要用到此路径。</p>
+<h3 id="计划任务">计划任务</h3>
+<p>控制面板 -> 计划任务 -> 新增 -> 计划的任务 -> 用户自定义的脚本 -> 常规，任务名称：<code>acme.sh</code>；用户账号：<code>root</code>； -> 计划，勾选在以下日期运行；选择每月重复； -> 任务设置，用户定义的脚本，<code>bash /volume1/docker/acme/run.sh >>/volume1/docker/acme/log.txt 2>&#x26;1</code>。</p>
+<h2 id="最后">最后</h2>
+<p>实现的方法有很多，但原理都是一样的，比如说域名的 DNS 解析在阿里、腾讯或者其他，只要在对应的参数进行修改即可。</p> </div> <div class="mt-8 flex flex-wrap items-center justify-between gap-6 text-sm sm:mt-12 sm:text-base"> <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm"> <a class="text-main hover:underline hover:underline-offset-4" href="/tags/折腾">
+#折腾 </a><a class="text-main hover:underline hover:underline-offset-4" href="/tags/群晖">
+#群晖 </a> </div> <button class="inline-flex items-center justify-center px-6 py-2 text-sm leading-tight italic no-underline text-main bg-main border border-main border-dashed rounded-full transition hover:bg-muted hover:border-solid whitespace-nowrap copy-url-button" aria-label="Copy link" data-url="https://www.iamlm.com/blog/119.%E8%AE%B0%E6%88%91%E7%BE%A4%E6%99%96%E4%B8%8A%E7%9A%84Docker%E9%A1%B9%E7%9B%AE%EF%BC%9Addns-go%E5%92%8Cacme.sh/" data-tooltip-default="Copy link" data-tooltip-success="Copied">Share</button> </div> </article> <div class="my-16 sm:my-24"> <h2 class="mb-12 text-xl font-semibold italic sm:mb-16 sm:text-2xl">Read Next</h2> <a class="flex justify-between items-start gap-8 group mb-10 sm:mb-12" href="/blog/120.用手上吃灰的游戏设备给自己一个忠告/"> <div class="grow prose prose-dante"> <h3 class="group-hover:underline group-hover:decoration-dashed group-hover:underline-offset-8 group-hover:decoration-1">用手上吃灰的游戏设备给自己一个忠告</h3> <div class="mt-1 text-sm leading-normal"> <time datetime="2023-02-19T00:00:00.000Z"> February 19, 2023 </time>  </div>  </div> <div class="hidden italic opacity-0 transition group-hover:opacity-100 sm:inline-flex sm:gap-1 sm:items-center sm:shrink-0">
+Read Post <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current w-4 h-4"> <path d="M4.286 12c0-0.533 0.432-0.964 0.964-0.964v0h11.172l-4.14-4.138c-0.175-0.175-0.283-0.416-0.283-0.683 0-0.533 0.432-0.965 0.965-0.965 0.267 0 0.508 0.108 0.683 0.283v0l5.785 5.785c0.175 0.175 0.283 0.416 0.283 0.683s-0.108 0.508-0.283 0.683l-5.785 5.785c-0.175 0.175-0.416 0.283-0.683 0.283-0.533 0-0.965-0.432-0.965-0.965 0-0.267 0.108-0.508 0.283-0.683v0l4.14-4.138h-11.172c-0.533 0-0.964-0.432-0.964-0.964v0z"></path> </svg> </div> </a> <a class="flex justify-between items-start gap-8 group mb-10 sm:mb-12" href="/blog/118.Obsidian上的内容自动化构建为Hugo博客/"> <div class="grow prose prose-dante"> <h3 class="group-hover:underline group-hover:decoration-dashed group-hover:underline-offset-8 group-hover:decoration-1">Obsidian上的内容自动化构建为Hugo博客</h3> <div class="mt-1 text-sm leading-normal"> <time datetime="2023-02-12T00:00:00.000Z"> February 12, 2023 </time>  </div>  </div> <div class="hidden italic opacity-0 transition group-hover:opacity-100 sm:inline-flex sm:gap-1 sm:items-center sm:shrink-0">
+Read Post <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="fill-current w-4 h-4"> <path d="M4.286 12c0-0.533 0.432-0.964 0.964-0.964v0h11.172l-4.14-4.138c-0.175-0.175-0.283-0.416-0.283-0.683 0-0.533 0.432-0.965 0.965-0.965 0.267 0 0.508 0.108 0.683 0.283v0l5.785 5.785c0.175 0.175 0.283 0.416 0.283 0.683s-0.108 0.508-0.283 0.683l-5.785 5.785c-0.175 0.175-0.416 0.283-0.683 0.283-0.533 0-0.965-0.432-0.965-0.965 0-0.267 0.108-0.508 0.283-0.683v0l4.14-4.138h-11.172c-0.533 0-0.964-0.432-0.964-0.964v0z"></path> </svg> </div> </a> </div><div id="tcomment"></div> <button class="inline-flex items-center justify-center px-6 py-2 text-sm leading-tight italic no-underline text-main bg-main border border-main border-dashed rounded-full transition hover:bg-muted hover:border-solid whitespace-nowrap tk">Load Comments</button> <style>
+  /* twikoo 评论样式 */
+  /* https://github.com/lmm214/immmmm/blob/da5bc900ab2b0d2ad2ed76c76ae515dc7788af36/themes/hello-friend/static/theme-20230619.css#L1392 */
+  .twikoo {
+    overflow: visible !important;
+  }
+  .tk-row.actions .tk-action-icon.__markdown,
+  .tk-preview,
+  .tk-content p a.at,
+  .tk-tag.tk-tag-green {
+    display: none !important;
+  }
+  .tk-nick-link:hover {
+    color: inherit !important;
+  }
+  .el-button.tk-preview {
+    border: none;
+  }
+  .tk-replies .tk-content {
+    font-size: 0.95em !important;
+  }
+  .el-input.is-active .el-input__inner,
+  .el-input__inner:focus,
+  .el-textarea__inner {
+    border-color: #ccc !important;
+  }
+  .el-button--primary,
+  .el-button--primary.is-disabled,
+  .el-button--primary.is-disabled:active,
+  .el-button--primary.is-disabled:focus,
+  .el-button--primary.is-disabled:hover {
+    color: #fff !important;
+    background-color: #252627 !important;
+    border-color: #4a4b50 !important;
+  }
+  .el-button:not(.el-button--primary):not(.el-button--text):hover {
+    color: currentColor !important;
+    background-color: rgba(144, 147, 153, 0.063) !important;
+    border-color: rgba(144, 147, 153, 0.31) !important;
+  }
+  .tk-action-icon svg {
+    fill: #434a56 !important;
+  }
+  .tk-comments-title .tk-icon svg {
+    fill: #ccc !important;
+  }
+  .tk-action-count {
+    color: #434a56 !important;
+  }
+  .dark .el-button,
+  .dark .el-input__inner,
+  .dark .el-textarea__inner {
+    color: silver !important;
+    background-color: #252627 !important;
+    border-color: #4a4b50 !important;
+  }
+  .dark .tk-meta-input .el-input .el-input-group__prepend {
+    color: silver !important;
+    background-color: #4a4b50 !important;
+    border-color: #4a4b50 !important;
+  }
+  .dark .el-button--primary,
+  .dark .el-button--primary.is-disabled,
+  .dark .el-button--primary.is-disabled:active,
+  .dark .el-button--primary.is-disabled:focus,
+  .dark .el-button--primary.is-disabled:hover {
+    color: #fff !important;
+    background-color: #252627 !important;
+    border-color: #4a4b50 !important;
+  }
+  .dark .tk-action-icon svg {
+    fill: #ccc !important;
+  }
+  .dark .tk-comments-title .tk-icon svg {
+    fill: #4a4b50 !important;
+  }
+  .dark .tk-action-count {
+    color: #ccc !important;
+  }
+  .OwO .OwO-body {
+    z-index: 99;
+  }
+  .OwO .OwO-body .OwO-items-emoji .OwO-item {
+    font-size: 23px !important;
+  }
+  .OwO .OwO-body .OwO-items-image .OwO-item {
+    max-width: calc(20% - 10px) !important;
+  }
+  .dark .OwO-body {
+    color: silver !important;
+    background-color: #252627 !important;
+    border-color: #4a4b50 !important;
+  }
+  .dark .OwO .OwO-body .OwO-bar {
+    border-top: 1px solid #4a4b50 !important;
+  }
+  .dark .OwO .OwO-body .OwO-items .OwO-item,
+  .dark .OwO .OwO-body .OwO-bar {
+    background: #4a4b50 !important;
+    color: #ccc !important;
+  }
+  .dark .OwO .OwO-body .OwO-bar .OwO-packages li:hover,
+  .dark .OwO .OwO-body .OwO-items-image .OwO-item:hover,
+  .dark .OwO .OwO-body .OwO-bar .OwO-packages .OwO-package-active {
+    background-color: #252627 !important;
+  }
+</style>    </main> <footer class="mx-auto w-full max-w-3xl pb-4 pt-8 sm:pt-16" data-astro-cid-sz7xmlte> <div class="flex flex-col pt-6 text-sm sm:flex-row sm:items-center sm:justify-between" data-astro-cid-sz7xmlte> <div class="mb-4 flex flex-wrap gap-x-4 gap-y-1" data-astro-cid-sz7xmlte> <a href="/about/" data-astro-cid-sz7xmlte>About</a><a href="/blog/" data-astro-cid-sz7xmlte>Blog</a><a href="/tags/" data-astro-cid-sz7xmlte>Tags</a><a href="/links/" data-astro-cid-sz7xmlte>Links</a><a href="/feed.xml" data-astro-cid-sz7xmlte>Rss</a> </div> <div class="mb-4 flex flex-wrap gap-x-4 gap-y-1" data-astro-cid-sz7xmlte> <a class="inline-flex items-center justify-center text-sm" href="https://280562.com/@laomai" target="_blank" rel="noopener noreferer" data-astro-cid-sz7xmlte> Mastodon </a><a class="inline-flex items-center justify-center text-sm" href="https://github.com/laomaiorg" target="_blank" rel="noopener noreferer" data-astro-cid-sz7xmlte> Github </a><a class="inline-flex items-center justify-center text-sm" href="https://twitter.com/laomaiorg" target="_blank" rel="noopener noreferer" data-astro-cid-sz7xmlte> X/Twitter </a> </div> </div> <div class="flex flex-col-reverse border-t border-dashed border-main pt-4 text-sm sm:flex-row sm:items-center sm:justify-between" data-astro-cid-sz7xmlte> <p data-astro-cid-sz7xmlte>
+2020-2024&nbsp;&copy;&nbsp;<a href="/" data-astro-cid-sz7xmlte>老麦</a> <a target="_blank" rel="noopener noreferer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" data-astro-cid-sz7xmlte>CC BY-NC-SA 4.0</a> </p> <div class="flex flex-col md:flex-row md:space-x-3" data-astro-cid-sz7xmlte> <a class="py-1" href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferer" data-astro-cid-sz7xmlte>粤ICP备20055414号</a> <div class="flex items-center space-x-1" data-astro-cid-sz7xmlte> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAoCAYAAACWwljjAAAFQklEQVRYw+3Wa1BUdRjH8SOpMeg4WhZGpDIxiaaTeUFgWrxE4AVRQJGlRRAVIV1JkbgMgQLi5AVBQSVLSp0xlEAUKBEEFZCrCstll8UV2AV2YbmoGCrYv31+R95UL5pmmtamZ+bz6rz5nvOc/5zDcX9jGLs/iTxuyvIlWYkRFeTHA2HVRFtzfhthTG5KuH96/vUgNlC4mMgyw1NJit/aAXLKazYje9xtIMZ/OZz50gW+9hcNkvoLEemEPbnrSP47QYwxQ5Ifv54RqzcXwFFvSyjaOhfavN8F7Y5ZcC/HH9JOB4LNa9Zw5YA76OZV8vIGMdZtSp7cDrtOnOavYiQhTAiPwi1AMtIQaqyngsxpBtw2GAGDKfaQmpUAa6xc4Vfp4UtEdzAMycsT9JQ1Tyctl/2eEkuTlYysF/rCUNxMqDEzgTqzSXBnpgnIHCzgjvEEuD52DLBr3rA1MAaWmNtB582wdtIljZ9G9D+IPU6aTxIPBjHCcXvg3CEh9K2fDLWvjIH6D6fwTIyheuwEqLUyhzLOALq8pkN+bgRw3HY4FBsMzxojZxP9DequLjAlQwVrbpIjhyIY4UYGQ/buhdBqPxlk3Gion2IMDQIz3kJe/ZS34I7uHkmD7VSQVgYDNyIAwsNCgfXGXoOBPjP9DKrOCAogA2etGTmTHAMcFwFZye7wS5QlVHGjoEw4A2qPCUBZ6AzNcQ5Q/YYRdO+YB1U3dsDwypLio4FJ3ECryIzWz6Cm3NgTRHN8HiPF6eHAGSbAdh8feFZkB7krzaHE9h2o85sDsiAbkIsXQMN+e2CtGyF0kzdwXCgU5++D/ouLQFV4OEU/g2Q/iNuIPNaKkQflAWBqexxGjhLDVUcL6IwSQN3SGVChe6FJg9dckCx6D1QBliDZLIAxo7eA8eyv4KE0BJqTrHkZvnL9DJKn+Twmt0NsGGHZy2Dn3kQYfsQ53Hh4/r4RNGz8AIpdzKEuaAF0RC2E57MmQgE3ATjuM/CPiANW7AqSfQJQ5vk362eQKmd3JrmXsoSRocpNIMnbB9zbceDIWUPmuHFQNMkISqa9DpUvNK6YDpW2s8DfwBK48WFQnhMCgzUBoLy0BrRVe5P0NWjPLdKUsJiR1tR1wGp8IeZwMgx/SrgRvjxuAziNcwLvyathLOcJHLflhRDYGRYFrNET2rJ5yvPLoas0tOj/oL8UpC4JHyTSU+6MNCS4gvKoAB5WiKG+MAQSg0WwLXQ/ZJ3xhao0FxB5hYCbUwAEfhEF3Td8QP2dAOQnPwFlxgrolUVq9TPoaX+ZB2nLc2Gk6awj1MU78HZZwJMid2Byb550JQwVO0NfxlJgdz14vWKeRAiK6DlQF28PLZdcoLNcBIO92bb6GTQ8Q/13RURT6tlH2gvXMlITLYD6uI+gp2ozdF0VQXumM6ivCqGvahM8kPiDItkeGo8tB025GFQ3xFrSr06zI3/4yde7oN7m0sWk5eKWDqK5JWJQvAHac9ygq3Adr9gTNNc3QG85rzPfHe5/7wDtPwuhp/Zz6CjyhaZzwi6ivfetHdH/oP77+3PJQOsuRnqkQdCa4wWqyx6gyecpL64GTaEX7ycXUJz4GJp1B4O0X/Hg0Xp1tFV+8Ei1k6c5coHofxBrrzQinbKYo0SVJ+wn6iurGHlY5gY911aDJnMFaHXXiDp9GQyvtKfUA9QFTtBZ7gPdit0tpFd9OpwwFmlA9D/o9yNLDpxIKmI8PMnNSNtviCLVpYTITzrXEGWaq4qos0WgOPdpCenIF+eRrurjB4k0PXopYZG6gMg/D/gNBUxhAbSAmKMAAAAASUVORK5CYII=" alt="公安网备" data-astro-cid-sz7xmlte width="14" height="14" loading="lazy" decoding="async"><a href="https://beian.mps.gov.cn/#/query/webSearch?code=44180302000162" target="_blank" rel="noopener noreferer" class="py-1" data-astro-cid-sz7xmlte>
+粤公网安备44180302000162
+</a> </div> </div> </div> </footer> <!-- Umami --> <script async defer src="https://umami.iamlm.com/laomai.js" data-website-id="85a9edfb-5859-4f66-8a28-f7f8548a80b3"></script>  </div> </body></html> 

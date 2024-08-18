@@ -67,4 +67,4 @@
         <span class="mt-error-icon">${i}</span>
         <strong>Oops, something's happened:</strong>
         <div class="mt-error-message">${t}</div>
-      </div>`,this.mtBodyNode.setAttribute("role","none"),new Error("Stopping the script due to an error building the timeline.")}}document.addEventListener("astro:page-load",()=>{document.getElementById("mt-container")&&new x({instanceUrl:"https://280562.com",timelineType:"profile",userId:"111445620201896920",profileName:"@laomai",maxNbPostFetch:"10",maxNbPostShow:"10",btnSeeMore:"",btnReload:""})});
+      </div>`,this.mtBodyNode.setAttribute("role","none"),new Error("Stopping the script due to an error building the timeline.")}}document.addEventListener("astro:page-load",()=>{document.getElementById("mt-container")&&new x({instanceUrl:"https://280562.com",timelineType:"profile",userId:"111445620201896920",profileName:"@laomai",maxNbPostFetch:"10",maxNbPostShow:"10",hideUserAccount:!0,btnSeeMore:"",btnReload:""})});

@@ -1,0 +1,1 @@
+[data-masonry-container]{display:flex;align-items:flex-start}[data-masonry-container]>*{visibility:hidden}[data-masonry-container].initialized>*{visibility:visible}[data-masonry-container]:not(.initialized){flex-wrap:wrap}[data-masonry-container]:not(.initialized)>*{width:25%}.astro-masonry-grid{display:flex;width:auto}

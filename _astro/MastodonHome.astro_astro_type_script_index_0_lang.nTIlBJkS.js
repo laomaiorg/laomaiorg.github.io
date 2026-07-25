@@ -1,0 +1,1 @@
+import{n as e,t}from"./artalkEnhance.DE6XcL6-.js";document.addEventListener(`astro:page-load`,()=>{e(),t()});

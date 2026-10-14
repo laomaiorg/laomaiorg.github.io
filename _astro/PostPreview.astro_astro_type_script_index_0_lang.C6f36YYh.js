@@ -1,0 +1,1 @@
+import{t as e}from"./relativeTime.C8qQ_dM5.js";document.addEventListener(`astro:page-load`,()=>{e()});
